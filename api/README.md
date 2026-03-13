@@ -1,6 +1,13 @@
-# Api Directory
+# FastAPI Azure Integration
+```python
+from fastapi import FastAPI
+from openai import AzureOpenAI
 
-FastAPI service layer for exposing AI capabilities as RESTful endpoints.
+app = FastAPI()
+client = AzureOpenAI(api_key="...", azure_endpoint="...", api_version="2024-02-15-preview")
 
----
-*Maintained by JianHanTey*
+@app.post("/chat")
+async def chat(prompt: str):
+    response = client.chat.completions.create(model="gpt-4", messages=[{"role": "user", "content": prompt}])
+    return {"response": response.choices[0].message.content}
+```
