@@ -1,6 +1,9 @@
-# Infrastructure Directory
-
-Terraform or Bicep templates for deploying Azure AI resources.
-
----
-*Maintained by JianHanTey*
+# Infrastructure as Code (Bicep)
+```bicep
+resource cognitiveService 'Microsoft.CognitiveServices/accounts@2023-05-01' = {
+  name: 'ai-enterprise-service'
+  location: resourceGroup().location
+  kind: 'OpenAI'
+  sku: { name: 'S0' }
+}
+```
